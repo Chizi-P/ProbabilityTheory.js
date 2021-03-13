@@ -1,9 +1,7 @@
 # ProbabilityTheory.js
- ProbabilityTheory.js
+[Code](https://github.com/Chizi-P/ProbabilityTheory.js/blob/main/ProbabilityTheory.js)
 
-
-
-#### How to Use
+### How to Use
 
 ```javascript
 let S = new SampleSpace(1, 2, 3, 4, 5, 6);

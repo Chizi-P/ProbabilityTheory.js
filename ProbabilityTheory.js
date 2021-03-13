@@ -13,7 +13,7 @@ class ProbabilityTheroy {
     }
     // 求概率
     static P(event) {
-        if (event.sampleSpace.length < 0) return -1;
+        if (event.sampleSpace.length < 0) return -1; // 分母不可為0
         return event.length / event.sampleSpace.length;
     }
     // 條件概率 P(A | B)
@@ -160,9 +160,21 @@ SampleSpace.prototype.__proto__ = Array.prototype;
 
 class RandomVariable {
     constructor(sampleSpace, func = () => {}) {
-        
+        let randomVariable = [];
+        sampleSpace.forEach(e => {
+            let v = SamplePoint.differenceBetween()(e);
+            randomVariable[v]
+        });
+        function func (n) {
+            return n * 2;
+        }
+        func.__proto__ = this;
+        return func;
     }
+    
 }
+
+console.log(new RandomVariable())
 
 class SamplePoint {
     constructor() {}
