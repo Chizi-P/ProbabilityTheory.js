@@ -13,7 +13,7 @@ class ProbabilityTheroy {
     }
     // 求概率
     static P(event) {
-        if (event.sampleSpace.length > 0) return -1;
+        if (event.sampleSpace.length < 0) return -1;
         return event.length / event.sampleSpace.length;
     }
     // 條件概率
@@ -111,7 +111,7 @@ class Events {
         return true;
     }
     probability() {
-        return ProbabilityTheroy.probability(this);
+        return ProbabilityTheroy.P(this);
     }
 }
 Events.prototype.__proto__ = Array.prototype;
@@ -141,3 +141,8 @@ class SampleSpace {
 }
 SampleSpace.prototype.__proto__ = Array.prototype;
 
+let S = new SampleSpace(1, 2, 3, 4, 5, 6);
+let A = S.event(e => e % 2);
+ProbabilityTheroy.P(A) === A.probability();
+
+console.log(S, A, ProbabilityTheroy.P(A) === A.probability());
