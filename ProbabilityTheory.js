@@ -16,15 +16,31 @@ class ProbabilityTheroy {
         if (event.sampleSpace.length < 0) return -1;
         return event.length / event.sampleSpace.length;
     }
-    // 條件概率
+    // 條件概率 P(A | B)
     static conditionalProbability(A, B) {
         return this.P(A.intersection(B))
     }
-    static BayesTheorem(A, B) {
+    static bayesTheorem(A, B) {
         // return this.P(A[i].intersection(B)) / this.P(B);
         return (this.P(A[i]) * this.P(this.conditionalProbability(B, A[i]))) / new Array(j).reduce((e, k) => this.P(A[k]) * this.conditionalProbability(B, A[k]));
     }
+    static factorial(n) {
+        if (n == 0) return 1;
+        n = BigInt(n);
+        let result = n;
+        while(--n) {
+            result *= n;
+        }
+        return result;
+    }
+    static permutation(n, k) {
+        return this.factorial(n) / this.factorial(n - k);
+    }
+    static combination(n, k) {
+        return this.factorial(n) / (this.factorial(n - k) * this.factorial(k));
+    }
 }
+
 
 class Events {
     constructor(sampleSpace, param = []) {
@@ -141,8 +157,27 @@ class SampleSpace {
 }
 SampleSpace.prototype.__proto__ = Array.prototype;
 
-let S = new SampleSpace(1, 2, 3, 4, 5, 6);
-let A = S.event(e => e % 2);
-ProbabilityTheroy.P(A) === A.probability();
 
-console.log(S, A, ProbabilityTheroy.P(A) === A.probability());
+class RandomVariable {
+    constructor(sampleSpace, func = () => {}) {
+        
+    }
+}
+
+class SamplePoint {
+    constructor() {}
+    // event
+    static sumEqual(val) {
+        return e => e.reduce?.((s, v) => s + v) == val;
+    }
+
+    // RandomVariable
+    static differenceBetween() {
+
+    }
+}
+
+let S = new SampleSpace([1, 1], [1, 2], [2, 1], [2, 2]);
+let A = S.event(SamplePoint.sumEqual(3));
+
+console.log(S, A, A.probability());
