@@ -26,7 +26,7 @@ let p = A.probability();
 
 生成一個樣本空間。
 
-##### 參數
+#### 參數
 
 ​	`value1, value2, ...`
 
@@ -52,11 +52,11 @@ let p = A.probability();
 
 #### 返回
 
-​	一個包含符合該條件的樣本點的 `Events` 類別的物品。
+​		一個包含符合該條件的樣本點的 `Events` 類別的物品。
 
 #### 描述
 
-​	該方法等價於 `new Event(<SampleSpace>, condition)`。
+​		該方法等價於 `new Event(<SampleSpace>, condition)`。
 
 
 
