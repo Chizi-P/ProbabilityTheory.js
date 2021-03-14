@@ -40,7 +40,7 @@ let p = A.probability();
 
 根據條件創建一個事件 。
 
-##### 參數
+#### 參數
 
 `condition`
 
@@ -50,11 +50,11 @@ let p = A.probability();
 
 		當前處理中的樣本點。
 
-##### 返回
+#### 返回
 
 ​	一個包含符合該條件的樣本點的 `Events` 類別的物品。
 
-##### 描述
+#### 描述
 
 ​	該方法等價於 `new Event(<SampleSpace>, condition)`。
 
@@ -64,15 +64,15 @@ let p = A.probability();
 
 根據條件創建一個隨機變數。
 
-##### 參數
+#### 參數
 
 `condition`：
 
-##### 返回
+#### 返回
 
 ​		一個樣本點映射到條件結果的 `RandomVariable` 類別的物品。
 
-##### 描述
+#### 描述
 
 ​	該方法等價於 `new RandomVariable(<SampleSpace>, condition)`。
 
@@ -82,9 +82,9 @@ let p = A.probability();
 
 判斷該樣本空間的所有樣本點是否與參數一致。
 
-##### 返回
+#### 返回
 
-​	`true` 一致，`false` 不一致。
+​	`true` 一致，`false` 則否。
 
 
 
@@ -92,3 +92,6 @@ let p = A.probability();
 
 判斷該樣本空間是否能被傳入的所有 `Events` 完全分割。
 
+#### 返回
+
+​	`true` 完全分割，`false` 則否。
