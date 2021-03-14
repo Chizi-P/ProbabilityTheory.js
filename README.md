@@ -1,25 +1,9 @@
 # ProbabilityTheory.js
 [Code](https://github.com/Chizi-P/ProbabilityTheory.js/blob/main/ProbabilityTheory.js)
 
-### How to Use
+### 如何使用：
 
-```javascript
-let S = new SampleSpace(1, 2, 3, 4, 5, 6);
-// ↪ SampleSpace(6) [ 1, 2, 3, 4, 5, 6 ]
-
-let A = S.event(e => e % 2);
-// ↪ Events(3) [ 1, 3, 5 ]
-
-let p1 = ProbabilityTheory.P(A);
-// ↪ 0.5
-
-let p2 = A.probability();
-// ↪ 0.5
-
-// ProbabilityTheory.P(A) === A.probability() ↪ true
-```
-
-
+`↪`：輸出
 
 ```javascript
 let S = new SampleSpace([1, 1], [1, 2], [2, 1], [2, 2]);
@@ -31,4 +15,80 @@ let A = S.event(SamplePoint.sumEqual(3));
 let p = A.probability();
 // ↪ 0.5
 ```
+
+
+
+# SampleSpace
+
+### Constructor
+
+#### new SampleSpace([value1[, value2[, ...]]])
+
+生成一個樣本空間。
+
+##### 參數
+
+​	`value1, value2, ...`
+
+​		類型為 `Number` 或 `Array`。
+
+
+
+### Instance methods
+
+#### \<SampleSpace>.event(function condition(samplePoint))
+
+根據條件創建一個事件 。
+
+##### 參數
+
+`condition`
+
+- 遍歷樣本空間 `SampleSpace` 中每個樣本點 `samplePoint` 的函數，返回 `true` 讓遍歷中的樣本點成為新事件的樣本點，`false` 則返回，該參數：
+
+	- `samplePoint` 
+
+		當前處理中的樣本點。
+
+##### 返回
+
+​	一個包含符合該條件的樣本點的 `Events` 類別的物品。
+
+##### 描述
+
+​	該方法等價於 `new Event(<SampleSpace>, condition)`。
+
+
+
+#### \<SampleSpace>.randomVariable(function condition(samplePoint)|SamplePoint)
+
+根據條件創建一個隨機變數。
+
+##### 參數
+
+`condition`：
+
+##### 返回
+
+​		一個樣本點映射到條件結果的 `RandomVariable` 類別的物品。
+
+##### 描述
+
+​	該方法等價於 `new RandomVariable(<SampleSpace>, condition)`。
+
+
+
+#### \<SampleSpace>.isSame(\<Array>|\<Events>)
+
+判斷該樣本空間的所有樣本點是否與參數一致。
+
+##### 返回
+
+​	`true` 一致，`false` 不一致。
+
+
+
+#### \<SampleSpace>.isPartion([\<Events>[, \<Events>[, ...]]])
+
+判斷該樣本空間是否能被傳入的所有 `Events` 完全分割。
 

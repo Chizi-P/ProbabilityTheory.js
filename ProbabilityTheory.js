@@ -191,7 +191,7 @@ class RandomVariable {
     get values() {
         return Object.keys(this);
     }
-    table(func) {
+    table() {
         console.table(this);
     }
     probabilityMassFunction(x) {
