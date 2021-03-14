@@ -39,6 +39,9 @@ class ProbabilityTheroy {
     static combination(n, k) {
         return this.factorial(n) / (this.factorial(n - k) * this.factorial(k));
     }
+    static probabilityMassFunction(randomVariable, x) {
+        return randomVariable[x]?.probability();
+    }
 }
 
 
@@ -142,6 +145,9 @@ class SampleSpace {
     event(condition) {
         return new Events(this, condition);
     }
+    randomVariable(condition = () => {}) {
+        return new RandomVariable(this, condition);
+    }
     isSame(event) {
         return this.length == event.length && this.every((e, i) => e === event[i]);
     }
@@ -157,39 +163,47 @@ class SampleSpace {
 }
 SampleSpace.prototype.__proto__ = Array.prototype;
 
-
-class RandomVariable {
-    constructor(sampleSpace, func = () => {}) {
-        let randomVariable = [];
-        sampleSpace.forEach(e => {
-            let v = SamplePoint.differenceBetween()(e);
-            randomVariable[v]
-        });
-        function func (n) {
-            return n * 2;
-        }
-        func.__proto__ = this;
-        return func;
-    }
-    
-}
-
-console.log(new RandomVariable())
-
 class SamplePoint {
     constructor() {}
     // event
     static sumEqual(val) {
         return e => e.reduce?.((s, v) => s + v) == val;
     }
-
+    
     // RandomVariable
-    static differenceBetween() {
-
+    static differenceBetween(e) {
+        return e.reduce?.((s, v) => s - v);
     }
 }
 
-let S = new SampleSpace([1, 1], [1, 2], [2, 1], [2, 2]);
-let A = S.event(SamplePoint.sumEqual(3));
 
-console.log(S, A, A.probability());
+class RandomVariable {
+    constructor(sampleSpace, condition = () => {}) {
+        let randomVariable = {};
+        randomVariable.__proto__ = this;
+        sampleSpace.forEach(e => {
+            let v = condition(e);
+            randomVariable[v] ?? (randomVariable[v] = new Events(sampleSpace));
+            randomVariable[v].push(e);
+        });
+        return randomVariable;
+    }
+    get values() {
+        return Object.keys(this);
+    }
+    table(func) {
+        console.table(this);
+    }
+    probabilityMassFunction(x) {
+        return ProbabilityTheroy.probabilityMassFunction(this, x);
+    }
+    probabilityMassFunctionTable() {
+        let table = {};
+        for (const e in this) {
+            table[e] = {probability : this.probabilityMassFunction(e)};
+        }
+        console.table(table);
+    }
+}
+RandomVariable.prototype.__proto__ = Array.prototype;
+
