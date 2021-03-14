@@ -18,7 +18,7 @@ let p = A.probability();
 
 
 
-# SampleSpace
+## SampleSpace
 
 ### Constructor
 
@@ -95,3 +95,76 @@ let p = A.probability();
 #### 返回
 
 ​	`true` 完全分割，`false` 則否。
+
+
+
+## Events
+
+### Constructor
+
+#### new Events(\<SampleSpace>, [\<Array>|function condition])
+
+生成一個事件。
+
+#### 參數
+
+​	`condition`
+
+#### \<Events>.intersection(event)
+
+#### \<Events>.symmetricDifference(event)
+
+#### \<Events>.union
+
+#### \<Events>.subtracting
+
+#### \<Events>.isSubset(event)
+
+#### \<Events>.isSuperset
+
+#### \<Events>.isDisjoint
+
+#### \<Events>.probability
+
+
+
+## SamplePoint
+
+#### SamplePoint.sumEqual
+
+#### SamplePoint.differenceBetween
+
+
+
+## RandomVariable
+
+### Constructor
+
+#### get \<RandomVariable>.values
+
+#### \<RandomVariable>.table
+
+#### \<RandomVariable>.probabilityMassFunction
+
+#### \<RandomVariable>.probabilityMassFunctionTable
+
+
+
+## ProbabilityTheroy
+
+### Constructor
+
+#### ProbabilityTheroy.P
+
+#### ProbabilityTheroy.conditionalProbability
+
+#### ProbabilityTheroy.bayesTheorem
+
+#### ProbabilityTheroy.factorial
+
+#### ProbabilityTheroy.permutation
+
+#### ProbabilityTheroy.combination
+
+#### ProbabilityTheroy.probabilityMassFunction
+
