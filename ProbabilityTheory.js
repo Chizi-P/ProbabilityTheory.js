@@ -17,8 +17,8 @@ class ProbabilityTheroy {
         return event.length / event.sampleSpace.length;
     }
     // 條件概率 P(A | B)
-    static conditionalProbability(A, B) {
-        return this.P(A.intersection(B))
+    static conditionalProbability(B, A) {
+        return this.P(B.intersection(A))
     }
     static bayesTheorem(A, B) {
         // return this.P(A[i].intersection(B)) / this.P(B);

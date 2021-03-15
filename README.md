@@ -62,11 +62,11 @@ let p = A.probability();
 
 #### \<SampleSpace>.randomVariable(function condition(samplePoint)|SamplePoint)
 
-根據條件創建一個隨機變數。
+根據條件創建一個隨機變量。
 
 #### 參數
 
-`condition`：
+`condition`
 
 #### 返回
 
@@ -110,29 +110,57 @@ let p = A.probability();
 
 ​	`condition`
 
-#### \<Events>.intersection(event)
+#### \<Events>.intersection(\<Events>)
 
-#### \<Events>.symmetricDifference(event)
+求該事件與另外一個事件的交集。
 
-#### \<Events>.union
+#### \<Events>.symmetricDifference(\<Events>)
 
-#### \<Events>.subtracting
+求該事件與另外一個事件的對稱差集。
 
-#### \<Events>.isSubset(event)
+#### \<Events>.union(\<Events>)
 
-#### \<Events>.isSuperset
+求該事件與另外一個事件的聯集。
 
-#### \<Events>.isDisjoint
+#### \<Events>.subtracting(\<Events>)
 
-#### \<Events>.probability
+求該事件的集合減去另外一個事件的集合。
+
+#### \<Events>.isSubset(\<Events>)
+
+判斷該事件是否為另外一個事件的子集合。
+
+#### \<Events>.isSuperset(\<Events>)
+
+判斷該事件是否為另外一個事件的超集合。
+
+#### \<Events>.isDisjoint(\<Events>)
+
+判斷該事件是否與另外一個事件互斥。
+
+#### \<Events>.probability()
+
+求得該事件的概率。
+
+#### 描述
+
+​	該方法等價於 `ProbabilityTheroy.P(<Events>)`。
 
 
 
 ## SamplePoint
 
-#### SamplePoint.sumEqual
+#### SamplePoint.sumEqual(value)
+
+判斷樣本點的和是否等於 `value`。
+
+#### 返回
+
+​	`true` 等於 `value`，`false` 則否。
 
 #### SamplePoint.differenceBetween
+
+求得樣本點的差。
 
 
 
@@ -140,31 +168,73 @@ let p = A.probability();
 
 ### Constructor
 
+#### new RandomVariable(sampleSpace, function condition)
+
+生成一個隨機變量。
+
+#### 參數
+
+​	`sampleSpace` 
+
+​		屬於 `SampleSpace ` 類別。
+
+​	`condition`
+
 #### get \<RandomVariable>.values
 
-#### \<RandomVariable>.table
+獲得該隨機變量
 
-#### \<RandomVariable>.probabilityMassFunction
+#### \<RandomVariable>.table()
 
-#### \<RandomVariable>.probabilityMassFunctionTable
+使用表格顯示該隨機變量。
+
+#### \<RandomVariable>.probabilityMassFunction(x)
+
+概率密度函數，數學的 $P(X=x)$。
+
+#### 參數
+
+​	`x` 
+
+#### \<RandomVariable>.probabilityMassFunctionTable()
+
+使用表格顯示該隨機變量所有數值通過概率密度函數的結果。
 
 
 
 ## ProbabilityTheroy
 
-### Constructor
+#### ProbabilityTheroy.P(\<Event>)
 
-#### ProbabilityTheroy.P
+求得事件的概率。
 
-#### ProbabilityTheroy.conditionalProbability
+#### ProbabilityTheroy.conditionalProbability(eventB, eventA)
 
-#### ProbabilityTheroy.bayesTheorem
+求得 `P(eventB | eventA)` 的條件概率，在 `eventA` 發生後，發生 `eventB` 的概率。
 
-#### ProbabilityTheroy.factorial
+#### 參數
 
-#### ProbabilityTheroy.permutation
+​	`eventA, eventB` 
 
-#### ProbabilityTheroy.combination
+​		都屬於 `Events` 類別。
 
-#### ProbabilityTheroy.probabilityMassFunction
+#### ProbabilityTheroy.bayesTheorem(A, B)
+
+求得事後概率。
+
+#### ProbabilityTheroy.factorial(n)
+
+計算 `n` 的階乘，數學的 $n!$ 。
+
+#### ProbabilityTheroy.permutation(n, k)
+
+排列，數學的 $P^{n}_{k}$。
+
+#### ProbabilityTheroy.combination(n, k)
+
+組合，數學的 $C^{n}_{k}$。
+
+#### ProbabilityTheroy.probabilityMassFunction(randomVariable, x)
+
+概率密度函數，數學的 $P(randomVariable = x)$。
 
