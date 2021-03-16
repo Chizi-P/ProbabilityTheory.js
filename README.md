@@ -218,9 +218,11 @@ let p = A.probability();
 
 ​		都屬於 `Events` 類別。
 
-#### ProbabilityTheroy.bayesTheorem(A, B)
+#### ProbabilityTheroy.posteriorProbability([\<Events>], \<Events>)
 
 求得事後概率。
+
+`[\<Events>]` 必須完全分割樣本空間。
 
 #### ProbabilityTheroy.factorial(n)
 

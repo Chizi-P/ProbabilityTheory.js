@@ -11,18 +11,30 @@ const undefinedParameterOfSubset = new ReferenceError("Undefined a parameter of 
 class ProbabilityTheroy {
     constructor() {
     }
-    // 求概率
+    // 求機率
     static P(event) {
         if (event.sampleSpace.length < 0) return -1; // 分母不可為0
         return event.length / event.sampleSpace.length;
     }
-    // 條件概率 P(A | B)
+    // 條件機率 P(A | B)
     static conditionalProbability(B, A) {
-        return this.P(B.intersection(A))
+        return this.P(B.intersection(A));
     }
-    static bayesTheorem(A, B) {
-        // return this.P(A[i].intersection(B)) / this.P(B);
-        return (this.P(A[i]) * this.P(this.conditionalProbability(B, A[i]))) / new Array(j).reduce((e, k) => this.P(A[k]) * this.conditionalProbability(B, A[k]));
+    // 事後機率 Bayes' Theorem
+    /**
+     * 
+     * @param {[Events]} A 
+     * @param {Events} B 
+     * @returns 
+     */
+    static posteriorProbability(A, B) {
+        // !
+        A[0]?.sampleSpace.isPartion(...A);
+        const PA = A.probability();
+        const PiA = 1 - PA;
+        const PBA = this.conditionalProbability(B, A);
+        const PBiA = this.conditionalProbability(B, 1 - A);
+        return PA * PBA / (PA * PBA + PiA * PBiA);
     }
     static factorial(n) {
         if (n == 0) return 1;
@@ -41,6 +53,12 @@ class ProbabilityTheroy {
     }
     static probabilityMassFunction(randomVariable, x) {
         return randomVariable[x]?.probability();
+    }
+    static cumulativeDistributionFunction(x) {
+
+    }
+    static probabilityDensityFunction() {
+        
     }
 }
 
