@@ -64,7 +64,7 @@ class ProbabilityTheroy {
         let result = 0;
         for (const xi of randomVariable.values) {
             result += randomVariable[xi].probability();
-            if (xi == x) break;
+            if (xi >= x) break;
         }
         return result;
         // continuous
@@ -75,15 +75,31 @@ class ProbabilityTheroy {
     static probabilityDensityFunction(fx) {
         
     }
-    /**
-     * 
-     * @param {RandomVariable} randomVariable 
-     */
     static mean(randomVariable) {
         return randomVariable.values.reduce((s, e) => {
-            return Number(s + e * randomVariable.probabilityMassFunction(e));
+            return Number(s + e * this.probabilityMassFunction(randomVariable, e));
         });
+        // continuous
+        // function of the random variable
+        if (typeof randomVariable == 'function') {
+            
+        }
     }
+    static medians(randomVariable) {
+        return this.cumulativeDistributionFunction(randomVariable, 0.5);
+    }
+    static variance(randomVariable) {
+        // ！
+        this.mean((randomVariable - this.mean(randomVariable)**2))
+    }
+    static standardDeviation() {}
+    static chebyshevsInequality() {}
+    static quantile(percent) {}
+    static upperQuantile() {}
+    static lowerQuantile() {}
+    static marginalProbabilityDistribution() {}
+    static covariance(X, Y) {}
+    static correlation(X, Y) {}
 }
 
 class SampleSpace {
@@ -197,6 +213,10 @@ class Events {
             }
         }
         return true;
+    }
+    // 是否為獨立 //
+    isIndependent(event) {
+        return this.intersection(event).probability() == this.probability() * event.probability()
     }
     probability() {
         return ProbabilityTheroy.P(this);

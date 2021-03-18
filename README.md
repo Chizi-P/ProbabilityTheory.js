@@ -52,21 +52,21 @@ X.cumulativeDistributionFunctionGraph()
        0   1   2   3   4   5  
 */
 
-console.log('mean:',ProbabilityTheroy.mean(X))
-// ↪ 1.9444444444444446
+console.log('mean:',ProbabilityTheory.mean(X))
+// ↪ mean: 1.9444444444444446
 ```
 
 
 
-## ProbabilityTheroy
+## ProbabilityTheory
 
-#### ProbabilityTheroy.P(\<Event>)
+#### ProbabilityTheory.P(\<Event>)
 
-求得事件的概率。
+求得事件的機率。
 
-#### ProbabilityTheroy.conditionalProbability(eventB, eventA)
+#### ProbabilityTheory.conditionalProbability(eventB, eventA)
 
-求得 `P(eventB | eventA)` 的條件概率，在 `eventA` 發生後，發生 `eventB` 的概率。
+求得 `P(eventB | eventA)` 的條件機率，在 `eventA` 發生後，發生 `eventB` 的機率。
 
 #### 參數
 
@@ -74,41 +74,75 @@ console.log('mean:',ProbabilityTheroy.mean(X))
 
 ​		都屬於 `Events` 類別。
 
-#### ProbabilityTheroy.posteriorProbability([\<Events>], \<Events>) （未完全實現）
+#### ProbabilityTheory.posteriorProbability([\<Events>], \<Events>) （未完成實現）
 
-求得事後概率。
+求得事後機率。
 
 `[\<Events>]` 必須完全分割樣本空間。
 
-#### ProbabilityTheroy.factorial(n)
+#### ProbabilityTheory.factorial(n)
 
 計算 `n` 的階乘，數學的 $n!$ 。
 
-#### ProbabilityTheroy.permutation(n, k)
+#### ProbabilityTheory.permutation(n, k)
 
 排列，數學的 $P^{n}_{k}$。
 
-#### ProbabilityTheroy.combination(n, k)
+#### ProbabilityTheory.combination(n, k)
 
 組合，數學的 $C^{n}_{k}$。
 
-#### ProbabilityTheroy.probabilityMassFunction(randomVariable, x)
+#### ProbabilityTheory.probabilityMassFunction(randomVariable, x)
 
-概率密度函數，數學的 $P(randomVariable = x)$。
+機率質量函數，數學的 $P(randomVariable = x)$。
 
-#### ProbabilityTheroy.cumulativeDistributionFunction(randomVariable, x)
+#### ProbabilityTheory.cumulativeDistributionFunction(randomVariable, x)
 
 累積分佈函數，數學的 $F(x) = P(randomVariable \leq x)$。
 
-#### ProbabilityTheroy.probabilityDensityFunction(fx) （未實現）
+#### ProbabilityTheory.probabilityDensityFunction(fx) （未實現）
 
+機率密度函數。
 
-
-#### ProbabilityTheroy.mean(randomVariable)
+#### ProbabilityTheory.mean(randomVariable)
 
 求得隨機變量的期望值。
 
+#### ProbabilityTheory.variance(randomVariable) （未完成實現）
 
+求得隨機變量的變異數。
+
+#### Probability.standardDeviation() （未實現）
+
+標準差。
+
+#### ProbabilityTheory.chebyshevsInequality() （未實現）
+
+切比雪夫不等式。
+
+#### ProbabilityTheory.quantile(percent) （未實現）
+
+`percent` 的分位點。
+
+#### ProbabilityTheory.upperQuantile() （未實現）
+
+`75%` 分位點。
+
+#### ProbabilityTheory.lowerQuantile() （未實現）
+
+`25%` 分位點。
+
+#### ProbabilityTheory.marginalProbabilityDistribution() （未實現）
+
+邊際機率函數。
+
+#### ProbabilityTheory.covariance(X, Y) （未實現）
+
+共同變異數。
+
+#### ProbabilityTheory.correlation(X, Y) （未實現）
+
+相關係數。
 
 
 
@@ -232,13 +266,17 @@ console.log('mean:',ProbabilityTheroy.mean(X))
 
 判斷該事件是否與另外一個事件互斥。
 
+#### \<Events>.isIndependent(\<Event>)
+
+判斷該事件是否與另外一個事件互相獨立。
+
 #### \<Events>.probability()
 
-求得該事件的概率。
+求得該事件的機率。
 
 #### 描述
 
-​	該方法等價於 `ProbabilityTheroy.P(<Events>)`。
+​	該方法等價於 `ProbabilityTheory.P(<Events>)`。
 
 
 
@@ -254,7 +292,7 @@ console.log('mean:',ProbabilityTheroy.mean(X))
 
 #### SamplePoint.differenceBetween
 
-求得樣本點的差。
+求得樣本點的絕對差。
 
 
 
@@ -284,7 +322,7 @@ console.log('mean:',ProbabilityTheroy.mean(X))
 
 #### \<RandomVariable>.probabilityMassFunction(x)
 
-概率密度函數，數學的 $P(X=x)$。
+機率密度函數，數學的 $P(X=x)$。
 
 #### 參數
 
@@ -292,7 +330,7 @@ console.log('mean:',ProbabilityTheroy.mean(X))
 
 #### \<RandomVariable>.probabilityMassFunctionTable()
 
-使用表格顯示該隨機變量所有數值通過概率密度函數的結果。
+使用表格顯示該隨機變量所有數值通過機率密度函數的結果。
 
 #### \<RandomVariable>.cumulativeDistributionFunction(x)
 
