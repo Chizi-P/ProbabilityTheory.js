@@ -6,15 +6,109 @@
 `↪`：輸出
 
 ```javascript
-let S = new SampleSpace([1, 1], [1, 2], [2, 1], [2, 2]);
-// ↪ SampleSpace(6) [ [ 1, 1 ], [ 1, 2 ], [ 2, 1 ], [ 2, 2 ] ]
+let S = new SampleSpace(
+    [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
+    [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
+    [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
+    [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
+    [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
+    [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+);
 
-let A = S.event(SamplePoint.sumEqual(3));
-// ↪ Events(2) [ [ 1, 2 ], [ 2, 1 ] ]
+let X = S.randomVariable(SamplePoint.differenceBetween);
 
-let p = A.probability();
-// ↪ 0.5
+X.probabilityMassFunctionTable()
+/** ↪
+┌─────────┬─────────────────────┐
+│ (index) │     probability     │
+├─────────┼─────────────────────┤
+│    0    │ 0.16666666666666666 │
+│    1    │ 0.2777777777777778  │
+│    2    │ 0.2222222222222222  │
+│    3    │ 0.16666666666666666 │
+│    4    │ 0.1111111111111111  │
+│    5    │ 0.05555555555555555 │
+└─────────┴─────────────────────┘
+*/
+
+X.cumulativeDistributionFunctionTable()
+/** ↪
+1.00 ┤░░░░░░░░░░░░░░░░░░░░██░░
+0.93 ┤░░░░░░░░░░░░░░░░██░░██░░
+0.87 ┤░░░░░░░░░░░░░░░░██░░██░░
+0.80 ┤░░░░░░░░░░░░██░░██░░██░░
+0.73 ┤░░░░░░░░░░░░██░░██░░██░░
+0.67 ┤░░░░░░░░██░░██░░██░░██░░
+0.60 ┤░░░░░░░░██░░██░░██░░██░░
+0.53 ┤░░░░░░░░██░░██░░██░░██░░
+0.47 ┤░░░░░░░░██░░██░░██░░██░░
+0.40 ┤░░░░██░░██░░██░░██░░██░░
+0.33 ┤░░░░██░░██░░██░░██░░██░░
+0.27 ┤░░░░██░░██░░██░░██░░██░░
+0.20 ┤░░░░██░░██░░██░░██░░██░░
+0.13 ┤██░░██░░██░░██░░██░░██░░
+0.07 ┤██░░██░░██░░██░░██░░██░░
+0.00   ╵   ╵   ╵   ╵   ╵   ╵  
+       0   1   2   3   4   5  
+*/
+
+console.log('mean:',ProbabilityTheroy.mean(X))
+// ↪ 1.9444444444444446
 ```
+
+
+
+## ProbabilityTheroy
+
+#### ProbabilityTheroy.P(\<Event>)
+
+求得事件的概率。
+
+#### ProbabilityTheroy.conditionalProbability(eventB, eventA)
+
+求得 `P(eventB | eventA)` 的條件概率，在 `eventA` 發生後，發生 `eventB` 的概率。
+
+#### 參數
+
+​	`eventA, eventB` 
+
+​		都屬於 `Events` 類別。
+
+#### ProbabilityTheroy.posteriorProbability([\<Events>], \<Events>) （未完全實現）
+
+求得事後概率。
+
+`[\<Events>]` 必須完全分割樣本空間。
+
+#### ProbabilityTheroy.factorial(n)
+
+計算 `n` 的階乘，數學的 $n!$ 。
+
+#### ProbabilityTheroy.permutation(n, k)
+
+排列，數學的 $P^{n}_{k}$。
+
+#### ProbabilityTheroy.combination(n, k)
+
+組合，數學的 $C^{n}_{k}$。
+
+#### ProbabilityTheroy.probabilityMassFunction(randomVariable, x)
+
+概率密度函數，數學的 $P(randomVariable = x)$。
+
+#### ProbabilityTheroy.cumulativeDistributionFunction(randomVariable, x)
+
+累積分佈函數，數學的 $F(x) = P(randomVariable \leq x)$。
+
+#### ProbabilityTheroy.probabilityDensityFunction(fx) （未實現）
+
+
+
+#### ProbabilityTheroy.mean(randomVariable)
+
+求得隨機變量的期望值。
+
+
 
 
 
@@ -200,43 +294,10 @@ let p = A.probability();
 
 使用表格顯示該隨機變量所有數值通過概率密度函數的結果。
 
+#### \<RandomVariable>.cumulativeDistributionFunction(x)
 
+該隨機變量的累積分佈函數。
 
-## ProbabilityTheroy
+#### \<RandomVariable>.cumulativeDistributionFunctionGraph([w[, h]])
 
-#### ProbabilityTheroy.P(\<Event>)
-
-求得事件的概率。
-
-#### ProbabilityTheroy.conditionalProbability(eventB, eventA)
-
-求得 `P(eventB | eventA)` 的條件概率，在 `eventA` 發生後，發生 `eventB` 的概率。
-
-#### 參數
-
-​	`eventA, eventB` 
-
-​		都屬於 `Events` 類別。
-
-#### ProbabilityTheroy.posteriorProbability([\<Events>], \<Events>)
-
-求得事後概率。
-
-`[\<Events>]` 必須完全分割樣本空間。
-
-#### ProbabilityTheroy.factorial(n)
-
-計算 `n` 的階乘，數學的 $n!$ 。
-
-#### ProbabilityTheroy.permutation(n, k)
-
-排列，數學的 $P^{n}_{k}$。
-
-#### ProbabilityTheroy.combination(n, k)
-
-組合，數學的 $C^{n}_{k}$。
-
-#### ProbabilityTheroy.probabilityMassFunction(randomVariable, x)
-
-概率密度函數，數學的 $P(randomVariable = x)$。
-
+該隨機變量的累積分佈函數圖。

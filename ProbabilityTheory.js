@@ -86,6 +86,33 @@ class ProbabilityTheroy {
     }
 }
 
+class SampleSpace {
+    constructor(...samplePoint) {
+        let sampleSpace = samplePoint;
+        sampleSpace.__proto__ = this;
+        return sampleSpace;
+    }
+    event(condition) {
+        return new Events(this, condition);
+    }
+    randomVariable(condition = () => {}) {
+        return new RandomVariable(this, condition);
+    }
+    isSame(event) {
+        return this.length == event.length && this.every((e, i) => e === event[i]);
+    }
+    // 完全分割
+    isPartion(...event) {
+        for (let i = 0, l = event.length; i < l; i++) {
+            for (let j = i + 1; j < l; j++) {
+                if (!event[i].isDisjoint(event[j])) return false;
+            }
+        }
+        return this.isSame(event.reduce((s, e) => s.union(e), new Events(event[0].sampleSpace)));
+    }
+}
+SampleSpace.prototype.__proto__ = Array.prototype;
+
 
 class Events {
     constructor(sampleSpace, param = []) {
@@ -178,33 +205,6 @@ class Events {
 Events.prototype.__proto__ = Array.prototype;
 
 
-class SampleSpace {
-    constructor(...samplePoint) {
-        let sampleSpace = samplePoint;
-        sampleSpace.__proto__ = this;
-        return sampleSpace;
-    }
-    event(condition) {
-        return new Events(this, condition);
-    }
-    randomVariable(condition = () => {}) {
-        return new RandomVariable(this, condition);
-    }
-    isSame(event) {
-        return this.length == event.length && this.every((e, i) => e === event[i]);
-    }
-    // 完全分割
-    isPartion(...event) {
-        for (let i = 0, l = event.length; i < l; i++) {
-            for (let j = i + 1; j < l; j++) {
-                if (!event[i].isDisjoint(event[j])) return false;
-            }
-        }
-        return this.isSame(event.reduce((s, e) => s.union(e), new Events(event[0].sampleSpace)));
-    }
-}
-SampleSpace.prototype.__proto__ = Array.prototype;
-
 class SamplePoint {
     constructor() {}
     // event
@@ -249,7 +249,7 @@ class RandomVariable {
     cumulativeDistributionFunction(x) {
         return ProbabilityTheroy.cumulativeDistributionFunction(this, x);
     }
-    cumulativeDistributionFunctionTable(w, h) {
+    cumulativeDistributionFunctionGraph(w, h) {
         w = w ?? Math.max(...this.values) + 1;
         h = h ?? 15;
         const toFixedNum = 2;
@@ -289,6 +289,6 @@ let S = new SampleSpace(
 );
 
 let X = S.randomVariable(SamplePoint.differenceBetween);
-X.table()
-X.cumulativeDistributionFunctionTable()
+X.probabilityMassFunctionTable()
+X.cumulativeDistributionFunctionGraph()
 console.log('mean:',ProbabilityTheroy.mean(X))
