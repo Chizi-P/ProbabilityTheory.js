@@ -31,7 +31,7 @@ X.probabilityMassFunctionTable()
 └─────────┴─────────────────────┘
 */
 
-X.cumulativeDistributionFunctionTable()
+X.cumulativeDistributionFunctionGraph()
 /** ↪
 1.00 ┤░░░░░░░░░░░░░░░░░░░░██░░
 0.93 ┤░░░░░░░░░░░░░░░░██░░██░░
