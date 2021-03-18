@@ -28,7 +28,12 @@ class ProbabilityTheroy {
      * @returns 
      */
     static posteriorProbability(A, B) {
-        // !
+        // ！
+        if (Array.isArray(A) && !(A instanceof Events)) {
+            if(A[0].sampleSpace.isPartion(...A)) {
+                
+            }
+        }
         A[0]?.sampleSpace.isPartion(...A);
         const PA = A.probability();
         const PiA = 1 - PA;
@@ -54,11 +59,30 @@ class ProbabilityTheroy {
     static probabilityMassFunction(randomVariable, x) {
         return randomVariable[x]?.probability();
     }
-    static cumulativeDistributionFunction(x) {
+    static cumulativeDistributionFunction(randomVariable, x) {
+        // discrete
+        let result = 0;
+        for (const xi of randomVariable.values) {
+            result += randomVariable[xi].probability();
+            if (xi == x) break;
+        }
+        return result;
+        // continuous
+        if (typeof randomVariable == 'function') {
 
+        }
     }
-    static probabilityDensityFunction() {
+    static probabilityDensityFunction(fx) {
         
+    }
+    /**
+     * 
+     * @param {RandomVariable} randomVariable 
+     */
+    static mean(randomVariable) {
+        return randomVariable.values.reduce((s, e) => {
+            return Number(s + e * randomVariable.probabilityMassFunction(e));
+        });
     }
 }
 
@@ -190,7 +214,7 @@ class SamplePoint {
     
     // RandomVariable
     static differenceBetween(e) {
-        return e.reduce?.((s, v) => s - v);
+        return e.reduce?.((s, v) => Math.abs(s - v));
     }
 }
 
@@ -222,6 +246,49 @@ class RandomVariable {
         }
         console.table(table);
     }
+    cumulativeDistributionFunction(x) {
+        return ProbabilityTheroy.cumulativeDistributionFunction(this, x);
+    }
+    cumulativeDistributionFunctionTable(w, h) {
+        w = w ?? Math.max(...this.values) + 1;
+        h = h ?? 15;
+        const toFixedNum = 2;
+        for (let i = 0; i < h; i++) {
+            process.stdout.write(`${(1 - i / h).toFixed(toFixedNum)} ┤`);
+            for (let j = 0; j < w; j++) {
+                if (i >= h - this.cumulativeDistributionFunction(j) * h) {
+                    process.stdout.write('██░░');
+                } else {
+                    process.stdout.write('░░░░');
+                }
+            }
+            console.log()
+        }
+        process.stdout.write(`${(0).toFixed(toFixedNum)}  `);
+        this.values.forEach(e => {
+            process.stdout.write(` ╵  `);
+        });
+        console.log()
+        process.stdout.write('      ');
+        this.values.forEach(e => {
+            process.stdout.write(` ${e}  `);
+        });
+        console.log()
+    }
 }
 RandomVariable.prototype.__proto__ = Array.prototype;
 
+
+let S = new SampleSpace(
+    [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
+    [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
+    [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
+    [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
+    [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
+    [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+);
+
+let X = S.randomVariable(SamplePoint.differenceBetween);
+X.table()
+X.cumulativeDistributionFunctionTable()
+console.log('mean:',ProbabilityTheroy.mean(X))
