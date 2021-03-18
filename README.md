@@ -17,7 +17,7 @@ let S = new SampleSpace(
 
 let X = S.randomVariable(SamplePoint.differenceBetween);
 
-X.probabilityMassFunctionTable()
+X.probabilityMassFunctionTable();
 /** ↪
 ┌─────────┬─────────────────────┐
 │ (index) │     probability     │
@@ -31,7 +31,7 @@ X.probabilityMassFunctionTable()
 └─────────┴─────────────────────┘
 */
 
-X.cumulativeDistributionFunctionGraph()
+X.cumulativeDistributionFunctionGraph();
 /** ↪
 1.00 ┤░░░░░░░░░░░░░░░░░░░░██░░
 0.93 ┤░░░░░░░░░░░░░░░░██░░██░░
@@ -52,7 +52,7 @@ X.cumulativeDistributionFunctionGraph()
        0   1   2   3   4   5  
 */
 
-console.log('mean:',ProbabilityTheory.mean(X))
+console.log('mean:', ProbabilityTheory.mean(X));
 // ↪ mean: 1.9444444444444446
 ```
 
