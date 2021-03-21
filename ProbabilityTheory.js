@@ -100,6 +100,34 @@ class ProbabilityTheroy {
     static marginalProbabilityDistribution() {}
     static covariance(X, Y) {}
     static correlation(X, Y) {}
+    static graph(xAxisValue, f) {
+        let Y = xAxisValue.map(x => f(x));
+        const h = 15;
+        const toFixedNum = 2;
+        const dx = 1 / h;
+        for (let i = 0; i < h; i++) {
+            process.stdout.write(`${(1 - i / h).toFixed(toFixedNum)} ┤░░`);
+            for (let j = 0; j < xAxisValue.length; j++) {
+                if (i >= h - Y[j] * h && i <= h - (Y[j] - dx) * h) {
+                    console.log('y', Y[j])
+                    process.stdout.write('██░░');
+                } else {
+                    process.stdout.write('░░░░');
+                }
+            }
+            console.log()
+        }
+        process.stdout.write(`${(0).toFixed(toFixedNum)}   `);
+        xAxisValue.forEach(e => {
+            process.stdout.write(` ╵  `);
+        });
+        console.log()
+        process.stdout.write('      ');
+        xAxisValue.forEach(e => {
+            process.stdout.write(`  ${e} `);
+        });
+        console.log()
+    }
 }
 
 class SampleSpace {
@@ -274,7 +302,7 @@ class RandomVariable {
         h = h ?? 15;
         const toFixedNum = 2;
         for (let i = 0; i < h; i++) {
-            process.stdout.write(`${(1 - i / h).toFixed(toFixedNum)} ┤`);
+            process.stdout.write(`${(1 - i / h).toFixed(toFixedNum)} ┤░░`);
             for (let j = 0; j < w; j++) {
                 if (i >= h - this.cumulativeDistributionFunction(j) * h) {
                     process.stdout.write('██░░');
@@ -284,14 +312,14 @@ class RandomVariable {
             }
             console.log()
         }
-        process.stdout.write(`${(0).toFixed(toFixedNum)}  `);
+        process.stdout.write(`${(0).toFixed(toFixedNum)}   `);
         this.values.forEach(e => {
             process.stdout.write(` ╵  `);
         });
         console.log()
         process.stdout.write('      ');
         this.values.forEach(e => {
-            process.stdout.write(` ${e}  `);
+            process.stdout.write(`  ${e} `);
         });
         console.log()
     }
@@ -312,3 +340,7 @@ let X = S.randomVariable(SamplePoint.differenceBetween);
 X.probabilityMassFunctionTable()
 X.cumulativeDistributionFunctionGraph()
 console.log('mean:',ProbabilityTheroy.mean(X))
+
+ProbabilityTheroy.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
+    return X.cumulativeDistributionFunction(x)
+})

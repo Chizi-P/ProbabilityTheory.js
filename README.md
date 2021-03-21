@@ -78,7 +78,7 @@ console.log('mean:', ProbabilityTheory.mean(X));
 
 求得事後機率。
 
-`[\<Events>]` 必須完全分割樣本空間。
+`[<Events>]` 必須完全分割樣本空間。
 
 #### ProbabilityTheory.factorial(n)
 
