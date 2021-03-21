@@ -146,6 +146,22 @@ console.log('mean:', ProbabilityTheory.mean(X));
 
 
 
+## SamplePoint
+
+#### SamplePoint.sumEqual(value)
+
+判斷樣本點的和是否等於 `value`。
+
+#### 返回
+
+​	`true` 等於 `value`，`false` 則否。
+
+#### SamplePoint.differenceBetween
+
+求得樣本點的絕對差。
+
+
+
 ## SampleSpace
 
 ### Constructor
@@ -277,22 +293,6 @@ console.log('mean:', ProbabilityTheory.mean(X));
 #### 描述
 
 ​	該方法等價於 `ProbabilityTheory.P(<Events>)`。
-
-
-
-## SamplePoint
-
-#### SamplePoint.sumEqual(value)
-
-判斷樣本點的和是否等於 `value`。
-
-#### 返回
-
-​	`true` 等於 `value`，`false` 則否。
-
-#### SamplePoint.differenceBetween
-
-求得樣本點的絕對差。
 
 
 

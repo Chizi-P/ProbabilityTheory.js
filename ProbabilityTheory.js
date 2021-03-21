@@ -130,6 +130,36 @@ class ProbabilityTheroy {
     }
 }
 
+
+/** use
+ * let set = [1, 2, 3, 4, 5, 6];
+ * let samplePoint = new SamplePoint([set, set]);
+ * let S = new SampleSpace(samplePoint); 
+ */
+class SamplePoint {
+    constructor(set) {
+        this.set = set;
+        let l = set.reduce((s, e) => s * e.length, 1);
+        let samplePoint = new Array(l)
+        console.log(samplePoint)
+        for (let i = 0; i < set.length; i++) {
+            for (let j = 0; j < set[i].length; j++) {
+            }
+        }
+        return samplePoint;
+    }
+    // event
+    static sumEqual(val) {
+        return e => e.reduce?.((s, v) => s + v) == val;
+    }
+    
+    // RandomVariable
+    static differenceBetween(e) {
+        return e.reduce?.((s, v) => Math.abs(s - v));
+    }
+}
+
+
 class SampleSpace {
     constructor(...samplePoint) {
         let sampleSpace = samplePoint;
@@ -251,20 +281,6 @@ class Events {
     }
 }
 Events.prototype.__proto__ = Array.prototype;
-
-
-class SamplePoint {
-    constructor() {}
-    // event
-    static sumEqual(val) {
-        return e => e.reduce?.((s, v) => s + v) == val;
-    }
-    
-    // RandomVariable
-    static differenceBetween(e) {
-        return e.reduce?.((s, v) => Math.abs(s - v));
-    }
-}
 
 
 class RandomVariable {
