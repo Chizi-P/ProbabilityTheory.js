@@ -159,6 +159,7 @@ class SamplePoint {
     }
 }
 
+// console.log('r', new SamplePoint([[1, 2], [4, 5]]))
 
 class SampleSpace {
     constructor(...samplePoint) {
@@ -342,21 +343,38 @@ class RandomVariable {
 }
 RandomVariable.prototype.__proto__ = Array.prototype;
 
+class DiscreteProbabilityDistributions {
+    constructor() {}
+    static Binomial() {}
+    static BinomialN() {}
+    static Geometric() {}
+    static NegativeBinomial() {}
+    static Hypergeometric() {}
+    static Poisson() {}
+    static Multinomial() {}
+    static Uniform() {}
+    static Exponential() {}
+    static Gamma() {}
+    static ChiSquared() {}
+    static Weibull() {}
+    static Beta() {}
+}
 
-let S = new SampleSpace(
-    [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
-    [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
-    [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
-    [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
-    [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
-    [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
-);
 
-let X = S.randomVariable(SamplePoint.differenceBetween);
-X.probabilityMassFunctionTable()
-X.cumulativeDistributionFunctionGraph()
-console.log('mean:',ProbabilityTheroy.mean(X))
+// let S = new SampleSpace(
+//     [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
+//     [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
+//     [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
+//     [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
+//     [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
+//     [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+// );
 
-ProbabilityTheroy.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
-    return X.cumulativeDistributionFunction(x)
-})
+// let X = S.randomVariable(SamplePoint.differenceBetween);
+// X.probabilityMassFunctionTable()
+// X.cumulativeDistributionFunctionGraph()
+// console.log('mean:',ProbabilityTheroy.mean(X))
+
+// ProbabilityTheroy.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
+//     return X.cumulativeDistributionFunction(x)
+// })
