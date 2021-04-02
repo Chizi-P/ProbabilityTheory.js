@@ -1,4 +1,4 @@
-# ProbabilityTheory.js
+# ProbabilityTheory.js (undone)
 [Code](https://github.com/Chizi-P/ProbabilityTheory.js/blob/main/ProbabilityTheory.js)
 
 ### 如何使用：
