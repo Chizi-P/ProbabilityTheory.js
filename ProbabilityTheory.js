@@ -304,10 +304,11 @@ class RandomVariable {
     probabilityMassFunction(x) {
         return ProbabilityTheroy.probabilityMassFunction(this, x);
     }
-    probabilityMassFunctionTable() {
+    probabilityMassFunctionTable(digits) {
         let table = {};
         for (const e in this) {
-            table[e] = {probability : this.probabilityMassFunction(e)};
+            const p = this.probabilityMassFunction(e);
+            table[e] = {probability : digits === undefined ? p : Number(p.toFixed(digits))};
         }
         console.table(table);
     }

@@ -328,9 +328,11 @@ console.log('mean:', ProbabilityTheory.mean(X));
 
 ​	`x` 
 
-#### \<RandomVariable>.probabilityMassFunctionTable()
+#### \<RandomVariable>.probabilityMassFunctionTable(digits)
 
 使用表格顯示該隨機變量所有數值通過機率密度函數的結果。
+
+`digits` 為對機率取小數點後幾位
 
 #### \<RandomVariable>.cumulativeDistributionFunction(x)
 
