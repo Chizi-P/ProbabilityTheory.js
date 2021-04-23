@@ -128,6 +128,25 @@ class ProbabilityTheroy {
         });
         console.log()
     }
+
+    //！ 再看看，放在哪個class
+    static summaryStatistics() {
+        
+    }
+    static table = {
+        normal: {
+
+        },
+        ChiSquared: [
+            []
+        ],
+        t: [
+            []
+        ],
+        F: [
+            []
+        ]
+    }
 }
 
 
@@ -344,23 +363,80 @@ class RandomVariable {
 }
 RandomVariable.prototype.__proto__ = Array.prototype;
 
+/**
+ * 離散機率分佈
+ */
 class DiscreteProbabilityDistributions {
     constructor() {}
-    static Binomial() {}
-    static BinomialN() {}
+    // 二項式
+    static Binomial(p) {
+        return {
+            P : (x) => x ? 1 - p : p,
+            E : p,
+            Var : p * (p - 1)
+        }
+    }
+    // n次二項式
+    static BinomialN(p, n) {
+        return {
+            P : (x) => ProbabilityTheroy.combination(n, x) * p ** x * (1 - p) ** (n - x),
+            E : n * p,
+            Var : n * p * (1 - p)
+        }
+    }
+    // 幾何
     static Geometric() {}
+    // 負二項式
     static NegativeBinomial() {}
+    // 超幾何
     static Hypergeometric() {}
+    // 柏松
     static Poisson() {}
+    // 多項式
     static Multinomial() {}
+    // 均勻
     static Uniform() {}
+    // 指數
     static Exponential() {}
+    // 伽馬
     static Gamma() {}
+    // 卡方
     static ChiSquared() {}
+    // 韋伯
     static Weibull() {}
+    // 貝塔
     static Beta() {}
+    // 正態
+    static Normal() {
+
+    }
 }
 
+
+class Graph {
+    constructor() {
+        this.type = 'barChart';
+        this.sampleSpace;
+    }
+    static barChart(sample) {
+        
+    }
+    static paretoChart() {
+
+    }
+    static categorical() {
+        
+    }
+    static pieCharts() {
+
+    }
+    static histograms() {
+
+    }
+    static boxplots() {
+
+    }
+}
 
 // let S = new SampleSpace(
 //     [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
