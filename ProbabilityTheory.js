@@ -163,9 +163,23 @@ class SamplePoint {
         console.log(samplePoint)
         for (let i = 0; i < set.length; i++) {
             for (let j = 0; j < set[i].length; j++) {
+                
             }
         }
         return samplePoint;
+    }
+    static range(start, end, step = 1) {
+        const l = (end - start) / step;
+        if (l % 1) throw '';
+
+        let result = new Array(l);
+        for (let i = 0, k = start; i <= l; i++, k += step) {
+            result[i] = k;
+        }
+        return result;
+    }
+    static charRange(startChar, endChar) {
+        return String.fromCharCode(...SamplePoint.range(startChar.charCodeAt(0), endChar.charCodeAt(0)));
     }
     // event
     static sumEqual(val) {
@@ -177,8 +191,6 @@ class SamplePoint {
         return e.reduce?.((s, v) => Math.abs(s - v));
     }
 }
-
-// console.log('r', new SamplePoint([[1, 2], [4, 5]]))
 
 class SampleSpace {
     constructor(...samplePoint) {
