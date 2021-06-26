@@ -455,6 +455,8 @@ class analysisOfVariance {
     constructor() {
         this.x = <Matrix>;
         this.y = <Matrix>;
+        H0;
+        HA;
     }
     // !!
     means(i) {
@@ -469,10 +471,25 @@ class analysisOfVariance {
         }, 0)
     }
     SSTr() {
-    
+        
     }
     SSE() {
 
+    }
+    MSTr() {
+        return this.SSTr() / (k - 1);
+    }
+    MSE() {
+        return this.SSE / (nT - k);
+    }
+    F() {
+        return this.MSTr() / this.MSE();
+    }
+    ANOVA() {
+        const table = {
+            
+        }
+        console.table(table);
     }
 }
 
