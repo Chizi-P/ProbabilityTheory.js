@@ -450,6 +450,33 @@ class Graph {
     }
 }
 
+
+class analysisOfVariance {
+    constructor() {
+        this.x = <Matrix>;
+        this.y = <Matrix>;
+    }
+    // !!
+    means(i) {
+        return this.x[i].reduce((a, b) => a + b, 0) / this.x[i].length;
+    }
+    // !!
+    SST() {
+        return this.x.reduce((a, b) => {
+            return a[i]?.reduce((c, d) => {
+                (c - this.means(i)) ** 2
+            }, 0)
+        }, 0)
+    }
+    SSTr() {
+    
+    }
+    SSE() {
+
+    }
+}
+
+
 // let S = new SampleSpace(
 //     [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
 //     [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
