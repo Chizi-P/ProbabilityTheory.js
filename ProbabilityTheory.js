@@ -168,6 +168,38 @@ class SamplePoint {
         }
         return samplePoint;
     }
+    // 生成數據
+    static set(...sets) {
+
+        function combination(set1, set2) {
+            let result = [];
+            for (let i = 0; i < set1.length; i++) {
+                for (let j = 0; j < set2.length; j++) {
+                    if (Array.isArray(set1[i])) {
+                        result.push([...set1[i], set2[j]]);
+                    } else {
+                        result.push([set1[i], set2[j]]);
+                    }
+                }
+            }
+            return result;
+        }
+
+        return sets.reduce((a, b) => {
+            console.log(a)
+            console.log(b)
+            // a.map(e => {
+            //     console.log('a', e)
+            // })
+            return combination(a.flat(), b)
+        })
+
+        // let points = sets[0];
+        // for (let i = 1; i < sets.length; i++) {
+        //     points = combination(points, sets[i]);
+        // }
+        // return points;
+    }
     static range(start, end, step = 1) {
         const l = (end - start) / step;
         if (l % 1) throw '';
@@ -453,8 +485,8 @@ class Graph {
 
 class analysisOfVariance {
     constructor() {
-        this.x = <Matrix>;
-        this.y = <Matrix>;
+        this.x = [[]] // <Matrix>
+        this.y = [[]] // <Matrix>
         H0;
         HA;
     }
@@ -511,3 +543,6 @@ class analysisOfVariance {
 // ProbabilityTheroy.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
 //     return X.cumulativeDistributionFunction(x)
 // })
+
+let sample = new SampleSpace(SamplePoint.set([1, 2, 3], [1, 2, 3, 4], ['A', 'B'], ['C', 'D']))
+console.log(sample)
