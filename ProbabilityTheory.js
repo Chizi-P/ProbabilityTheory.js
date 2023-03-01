@@ -8,7 +8,7 @@ const notTypeofSet = new TypeError("Incoming parameter is not type of Set");
 const undefinedParameterOfSuperset = new ReferenceError("Undefined a parameter of 'superset', can't compare with it");
 const undefinedParameterOfSubset = new ReferenceError("Undefined a parameter of 'subset', can't compare with it");
 
-class ProbabilityTheroy {
+class ProbabilityTheory {
     constructor() {
     }
     // 求機率
@@ -92,7 +92,9 @@ class ProbabilityTheroy {
         // ！
         this.mean((randomVariable - this.mean(randomVariable)**2))
     }
-    static standardDeviation() {}
+    static standardDeviation(randomVariable) {
+        randomVariable
+    }
     static chebyshevsInequality() {}
     static quantile(percent) {}
     static upperQuantile() {}
@@ -341,7 +343,7 @@ class Events {
         return this.intersection(event).probability() == this.probability() * event.probability()
     }
     probability() {
-        return ProbabilityTheroy.P(this);
+        return ProbabilityTheory.P(this);
     }
 }
 Events.prototype.__proto__ = Array.prototype;
@@ -365,7 +367,7 @@ class RandomVariable {
         console.table(this);
     }
     probabilityMassFunction(x) {
-        return ProbabilityTheroy.probabilityMassFunction(this, x);
+        return ProbabilityTheory.probabilityMassFunction(this, x);
     }
     probabilityMassFunctionTable(digits) {
         let table = {};
@@ -376,7 +378,7 @@ class RandomVariable {
         console.table(table);
     }
     cumulativeDistributionFunction(x) {
-        return ProbabilityTheroy.cumulativeDistributionFunction(this, x);
+        return ProbabilityTheory.cumulativeDistributionFunction(this, x);
     }
     cumulativeDistributionFunctionGraph(w, h) {
         w = w ?? Math.max(...this.values) + 1;
@@ -423,7 +425,7 @@ class DiscreteProbabilityDistributions {
     // n次二項式
     static BinomialN(p, n) {
         return {
-            P : (x) => ProbabilityTheroy.combination(n, x) * p ** x * (1 - p) ** (n - x),
+            P : (x) => ProbabilityTheory.combination(n, x) * p ** x * (1 - p) ** (n - x),
             E : n * p,
             Var : n * p * (1 - p)
         }
@@ -526,23 +528,23 @@ class analysisOfVariance {
 }
 
 
-// let S = new SampleSpace(
-//     [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
-//     [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
-//     [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
-//     [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
-//     [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
-//     [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
-// );
+let S = new SampleSpace(
+    [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],
+    [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6],
+    [3, 1], [3, 2], [3, 3], [3, 4], [3, 5], [3, 6],
+    [4, 1], [4, 2], [4, 3], [4, 4], [4, 5], [4, 6],
+    [5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6],
+    [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6],
+);
 
-// let X = S.randomVariable(SamplePoint.differenceBetween);
-// X.probabilityMassFunctionTable()
-// X.cumulativeDistributionFunctionGraph()
-// console.log('mean:',ProbabilityTheroy.mean(X))
+let X = S.randomVariable(SamplePoint.differenceBetween);
+X.probabilityMassFunctionTable()
+X.cumulativeDistributionFunctionGraph()
+console.log('mean:',ProbabilityTheory.mean(X))
 
-// ProbabilityTheroy.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
+// ProbabilityTheory.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
 //     return X.cumulativeDistributionFunction(x)
 // })
 
-let sample = new SampleSpace(SamplePoint.set([1, 2, 3], [1, 2, 3, 4], ['A', 'B'], ['C', 'D']))
-console.log(sample)
+// let sample = new SampleSpace(SamplePoint.set([1, 2, 3], [1, 2, 3, 4], ['A', 'B'], ['C', 'D']))
+// console.log(sample)
