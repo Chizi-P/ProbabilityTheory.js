@@ -42,13 +42,9 @@ class ProbabilityTheory {
         return PA * PBA / (PA * PBA + PiA * PBiA)
     }
     static factorial(n) {
-        if (n == 0) return 1
-        n = BigInt(n)
-        let result = n
-        while(--n) {
-            result *= n
-        }
-        return result
+        if (n === 2) return 2
+        if (n === 0) return 1
+        return n * this.factorial(Math.abs(n) - 1)
     }
     static permutation(n, k) {
         return this.factorial(n) / this.factorial(n - k)
@@ -540,7 +536,7 @@ let S = new SampleSpace(
 let X = S.randomVariable(SamplePoint.differenceBetween)
 X.probabilityMassFunctionTable()
 X.cumulativeDistributionFunctionGraph()
-console.log('mean:',ProbabilityTheory.mean(X))
+console.log('mean:', ProbabilityTheory.mean(X))
 
 // ProbabilityTheory.graph([0, 1, 2, 3, 4, 5, 6, 7, 8], x => {
 //     return X.cumulativeDistributionFunction(x)
